@@ -34,7 +34,7 @@ public class InicioServlet extends HttpServlet {
 		
 		//Si la contraseña es correcta
 		String contra = request.getParameter("contra");
-		if(contra.equals("admin")) {
+		if("admin".equals("contra")) {
 			RequestDispatcher rd = request.getRequestDispatcher("saludo");
 			rd.forward(request, response);
 			
