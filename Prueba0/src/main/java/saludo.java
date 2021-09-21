@@ -1,9 +1,8 @@
-package martes;
+
 
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -12,16 +11,16 @@ import jakarta.servlet.http.HttpServletResponse;
 
 
 /**
- * Servlet implementation class InicioServlet
+ * Servlet implementation class saludo
  */
-@WebServlet("/login")
-public class InicioServlet extends HttpServlet {
+@WebServlet("/saludo")
+public class saludo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * Default constructor. 
      */
-    public InicioServlet() {
+    public saludo() {
         // TODO Auto-generated constructor stub
     }
 
@@ -32,18 +31,8 @@ public class InicioServlet extends HttpServlet {
 		response.setContentType("text/html");
 		PrintWriter salida=response.getWriter();
 		
-		//Si la contraseña es correcta
-		String contra = request.getParameter("contra");
-		if(contra.equals("admin")) {
-			RequestDispatcher rd = request.getRequestDispatcher("saludo");
-			rd.forward(request, response);
-			
-		//Si la contraseña es incorrecta	
-		}else {
-			salida.println("Lo sentimos, error en el login.");
-			RequestDispatcher rd = request.getRequestDispatcher("login.html");
-			rd.include(request, response);
-		}
+		String nombre = request.getParameter("nombre");
+				salida.println("Bienvenid@"+nombre); 
 	}
 
 	/**
@@ -52,7 +41,6 @@ public class InicioServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 }
