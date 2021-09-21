@@ -3,6 +3,7 @@
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -54,7 +55,7 @@ public class ej3 extends HttpServlet {
 		if(null!=ide3) {
 			ides += " "+ide3;
 		}
-		salida.println("Lenguaje: "+ides);
+		salida.println("IDE: "+ides);
 		
 		String estudio="";
 		for(int i=0;i<arrayEstudio.length;i++) {
@@ -62,6 +63,24 @@ public class ej3 extends HttpServlet {
 		}
 		salida.println("<br>");
 		salida.println("Lugar de trabajo: " +estudio);
+		
+		if(nombre.equals(null)) {
+			salida.println("Error, rellena el campo nombre!");
+			RequestDispatcher rd = request.getRequestDispatcher("ejercicio3.html");
+			rd.forward(request, response);
+		}
+		
+		if(fav_language==null) {
+			salida.println("Error, rellena el campo lenguaje favorito!");
+			RequestDispatcher rd = request.getRequestDispatcher("ejercicio3.html");
+			rd.forward(request, response);
+		}
+		
+		if(arrayEstudio.length==0) {
+			salida.println("Error, rellena el campo lugar de trabajo!");
+			RequestDispatcher rd = request.getRequestDispatcher("ejercicio3.html");
+			rd.forward(request, response);
+		}
 		
 	}
 
