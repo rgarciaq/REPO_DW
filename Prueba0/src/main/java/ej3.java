@@ -39,12 +39,14 @@ public class ej3 extends HttpServlet {
 		response.setContentType("text/html");
 		PrintWriter salida = response.getWriter();
 		
-		salida.println("Datos del Servlet");
+		/**salida.println("Datos del Servlet");
 		salida.println("<br>");
 		salida.println("Nombre: "+nombre);
 		salida.println("<br>");
 		salida.println("Lenguaje Favorito: "+fav_language);
 		salida.println("<br>");
+		
+		
 		String ides="";
 		if(null!=ide1) {
 			ides=ide1;
@@ -57,31 +59,41 @@ public class ej3 extends HttpServlet {
 		}
 		salida.println("IDE: "+ides);
 		
+		
 		String estudio="";
 		for(int i=0;i<arrayEstudio.length;i++) {
 			estudio+= arrayEstudio[i]+" ";
 		}
 		salida.println("<br>");
 		salida.println("Lugar de trabajo: " +estudio);
+		**/
 		
-		if(nombre.equals(null)) {
-			salida.println("Error, rellena el campo nombre!");
-			RequestDispatcher rd = request.getRequestDispatcher("ejercicio3.html");
-			rd.forward(request, response);
+		
+		String mensajeError="";
+		
+		if("".equals(nombre)) {
+			mensajeError+="Error, rellena el campo nombre!";
 		}
+		
+		
+		if(ide1==null && ide2==null && ide3==null) {
+			mensajeError+="Error, rellena el campo ide!<br>";		
+		}
+		
 		
 		if(fav_language==null) {
-			salida.println("Error, rellena el campo lenguaje favorito!");
-			RequestDispatcher rd = request.getRequestDispatcher("ejercicio3.html");
-			rd.forward(request, response);
+			mensajeError+="Error, rellena el campo lenguaje favorito!<br>";
 		}
 		
-		if(arrayEstudio.length==0) {
-			salida.println("Error, rellena el campo lugar de trabajo!");
-			RequestDispatcher rd = request.getRequestDispatcher("ejercicio3.html");
-			rd.forward(request, response);
+		if(arrayEstudio==null) {
+			mensajeError+="Error, rellena el campo lugar de trabajo!<br>";			
 		}
 		
+		if(!"".equals(mensajeError)) {
+			salida.println(mensajeError);
+			RequestDispatcher rd = request.getRequestDispatcher("ejercicio3.html");
+			rd.include(request, response);
+		}
 	}
 
 	/**
