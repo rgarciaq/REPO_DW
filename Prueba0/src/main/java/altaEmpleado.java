@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import martes.EmpleadoDAO;
+import martes.EmpleadoVO;
 
 
 /**
@@ -33,7 +34,7 @@ public class altaEmpleado extends HttpServlet {
 		String email=request.getParameter("email");
 		String zona=request.getParameter("zona");
 		
-		EmpleadoVO(0,"raul","123","agagaga","norte");
+		EmpleadoVO empleado= new EmpleadoVO (0,nombre,password,email,zona);
 		EmpleadoDAO.guardarEmpleado(empleado);
 		
 	}
