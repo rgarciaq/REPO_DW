@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<%@ page import="martes.EmpleadoDAO, martes.EmpleadoVO" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 </body>
 </html>

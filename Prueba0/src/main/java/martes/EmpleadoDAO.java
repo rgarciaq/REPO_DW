@@ -2,6 +2,11 @@ package martes;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
+
 
 public class EmpleadoDAO {
 	
@@ -39,5 +44,29 @@ public class EmpleadoDAO {
 		
 		return estado;
 	}
-
-}
+	
+	public static List<EmpleadoVO> obtenerEmpledos(){
+		List<EmpleadoVO> listaEmpleados = new ArrayList<EmpleadoVO>();
+		try {
+			Connection conexion = EmpleadoDAO.obtenerConexion();
+			PreparedStatement ps= conexion.prepareStatement("SELECT * FROM empleados");
+			ResultSet resultado=ps.executeQuery();
+			
+			while(resultado.next()) {
+				EmpleadoVO empleado = new EmpleadoVO();
+				empleado.setId(resultado.getInt(1));
+				empleado.setNombre(resultado.getString(2));
+				empleado.setPassword(resultado.getString(3));
+				empleado.setEmail(resultado.getString(4));
+				empleado.setZona(resultado.getString(5));
+				listaEmpleados.add(empleado);
+				
+			}
+	}catch(Exception e){
+		System.out.println("error");
+		
+	}
+		
+		return listaEmpleados;
+	}
+	}
