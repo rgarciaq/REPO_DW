@@ -9,7 +9,11 @@ public class EmpleadoVO {
 	private String zona;
 	
 	
+	
 
+	public EmpleadoVO() {
+		super();
+	}
 	public EmpleadoVO(int id, String nombre, String password, String email, String zona) {
 		super();
 		this.id = id;
